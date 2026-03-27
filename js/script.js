@@ -1,6 +1,6 @@
 console.log("script.js loaded");
 
-const endpoint = "https://api.giphy.com/v1/gifs/search?api_key=kZuBXqdiLwhstYJIjyFPZ3VyFXd2RruA&q=dogs&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips";
+const endpoint = "https://api.giphy.com/v1/gifs/search?api_key=dt2VW3yNa9OyQrmLBaJQc4nuW7I01ZKd&q=dogs&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips";
 
 // images array to hold the gifs
 let images = [];
@@ -20,7 +20,7 @@ async function getDogGifs() {
   gifContainer.innerHTML = "";
 
   for (let i = 0; i < images.length; i++) {
-    gifContainer.innerHTML += `<img src="${images[i].url}" alt='dog gif' class = 'col-3 mb-3'>`;
+    gifContainer.innerHTML += `<img src="${images[i].images.fixed_height.url}" alt='dog gif' class = 'col-3 mb-3'>`;
   }
 }
 
