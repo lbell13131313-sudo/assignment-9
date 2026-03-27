@@ -7,19 +7,26 @@ let images = [];
 
 async function getDogGifs() {
   const response = await fetch(endpoint);
+  console.log(response.status); // a 429 means I'm getting an API limit issue
   const data = await response.json();
-  images = data;
+  // store the dog gifs in an array
+  images = data.data;
 
-  //console.log(data);
+  console.log(images);
   
-  // Update the DOM with the dog gif
-  const output = document.querySelector("gif-container"); 
-  // output.src = gif; // fix this
+  const gifContainer = document.querySelector("#gif-container"); 
+  
+  // ensures that all the gifs are cleared out after each button press so it doesn't become a mess
+  gifContainer.innerHTML = "";
+
+  for (let i = 0; i < images.length; i++) {
+    gifContainer.innerHTML += `<img src="${images[i].url}" alt='dog gif' class = 'col-3 mb-3'>`;
+  }
 }
 
-// button for recieving a dog gif
-const button = document.querySelector("fetch-gif-btn"); 
+// button for recieving the dog gifs
+const button = document.querySelector("#fetch-gif-btn"); 
 
-button.addEventListener("click", function () { 
-  getDogGifs(); 
+button.addEventListener("click", async () => {
+    await getDogGifs();
 });
